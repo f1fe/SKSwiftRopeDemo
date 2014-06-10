@@ -40,7 +40,6 @@ class GameScene: SKScene {
         self.player = SKSpriteNode(color: UIColor.greenColor(), size: CGSize(width: 50, height: 50))
         self.player.position = CGPoint(x: player.size.width * 2, y: self.frame.size.height / 2)
         self.player.physicsBody = SKPhysicsBody(rectangleOfSize: player.frame.size)
-        //self.player.physicsBody.allowsRotation = false
         self.player.physicsBody.collisionBitMask = 1
         self.player.physicsBody.categoryBitMask = 1
         self.player.physicsBody.contactTestBitMask = 1
@@ -68,6 +67,8 @@ class GameScene: SKScene {
             
             self.player.position = location
             self.player.zRotation = 0.0
+            self.player.physicsBody.velocity = CGVectorMake(0.0, 0.0);
+            
             var rope = Rope(parentScene: self, node: self.player, node: self.anchor, texture: "rope.png")
         }
     }
