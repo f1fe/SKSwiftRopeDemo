@@ -14,6 +14,7 @@
 		FE5FDC241946995F004D2269 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE5FDC221946995F004D2269 /* Main.storyboard */; };
 		FE5FDC261946995F004D2269 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE5FDC251946995F004D2269 /* Images.xcassets */; };
 		FE5FDC321946995F004D2269 /* SKSwiftRopeDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5FDC311946995F004D2269 /* SKSwiftRopeDemoTests.swift */; };
+		FE5FDC3C19474E73004D2269 /* Rope.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5FDC3B19474E73004D2269 /* Rope.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		FE5FDC2B1946995F004D2269 /* SKSwiftRopeDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SKSwiftRopeDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE5FDC301946995F004D2269 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FE5FDC311946995F004D2269 /* SKSwiftRopeDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKSwiftRopeDemoTests.swift; sourceTree = "<group>"; };
+		FE5FDC3B19474E73004D2269 /* Rope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rope.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,10 +81,8 @@
 		FE5FDC171946995F004D2269 /* SKSwiftRopeDemo */ = {
 			isa = PBXGroup;
 			children = (
-				FE5FDC1A1946995F004D2269 /* AppDelegate.swift */,
+				FE5FDC3D19474E8A004D2269 /* Source */,
 				FE5FDC1C1946995F004D2269 /* GameScene.sks */,
-				FE5FDC1E1946995F004D2269 /* GameScene.swift */,
-				FE5FDC201946995F004D2269 /* GameViewController.swift */,
 				FE5FDC221946995F004D2269 /* Main.storyboard */,
 				FE5FDC251946995F004D2269 /* Images.xcassets */,
 				FE5FDC181946995F004D2269 /* Supporting Files */,
@@ -113,6 +113,17 @@
 				FE5FDC301946995F004D2269 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FE5FDC3D19474E8A004D2269 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				FE5FDC1A1946995F004D2269 /* AppDelegate.swift */,
+				FE5FDC1E1946995F004D2269 /* GameScene.swift */,
+				FE5FDC201946995F004D2269 /* GameViewController.swift */,
+				FE5FDC3B19474E73004D2269 /* Rope.swift */,
+			);
+			name = Source;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -218,6 +229,7 @@
 				FE5FDC1F1946995F004D2269 /* GameScene.swift in Sources */,
 				FE5FDC211946995F004D2269 /* GameViewController.swift in Sources */,
 				FE5FDC1B1946995F004D2269 /* AppDelegate.swift in Sources */,
+				FE5FDC3C19474E73004D2269 /* Rope.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

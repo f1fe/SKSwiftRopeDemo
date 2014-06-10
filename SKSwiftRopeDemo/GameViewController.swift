@@ -34,6 +34,7 @@ class GameViewController: UIViewController {
             let skView = self.view as SKView
             skView.showsFPS = true
             skView.showsNodeCount = true
+            skView.showsPhysics = true
             
             /* Sprite Kit applies additional optimizations to improve rendering performance */
             skView.ignoresSiblingOrder = true
@@ -44,7 +45,11 @@ class GameViewController: UIViewController {
             skView.presentScene(scene)
         }
     }
-
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
+    
     override func shouldAutorotate() -> Bool {
         return true
     }

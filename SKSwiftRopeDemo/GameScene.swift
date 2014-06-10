@@ -9,33 +9,39 @@
 import SpriteKit
 
 class GameScene: SKScene {
+    
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
-        let myLabel = SKLabelNode(fontNamed:"Chalkduster")
-        myLabel.text = "Hello, World!";
-        myLabel.fontSize = 65;
-        myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
         
-        self.addChild(myLabel)
+        // Physics border around screen
+        self.physicsBody = SKPhysicsBody(edgeLoopFromRect: self.frame)
+        
+        // Static Body
+        var anchor = SKSpriteNode(color: UIColor.redColor(), size: CGSize(width: 50, height: 50))
+        anchor.position = CGPoint(x: self.frame.size.width / 2, y: self.frame.size.height - anchor.size.height)
+        anchor.physicsBody = SKPhysicsBody(rectangleOfSize: anchor.frame.size)
+        anchor.physicsBody.dynamic = false
+        self.addChild(anchor)
+        
+        // Dynamic Body
+        var player = SKSpriteNode(color: UIColor.greenColor(), size: CGSize(width: 50, height: 50))
+        player.position = CGPoint(x: player.size.width * 2, y: self.frame.size.height / 2)
+        //player.position.x += 400
+        player.physicsBody = SKPhysicsBody(rectangleOfSize: player.frame.size)
+        self.addChild(player)
+        
+        // Create Rope
+        var rope = Rope(parentScene: self, node: player, node: anchor, texture: "rope.png")
     }
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         /* Called when a touch begins */
         
         for touch: AnyObject in touches {
-            let location = touch.locationInNode(self)
-            
-            let sprite = SKSpriteNode(imageNamed:"Spaceship")
-            
-            sprite.xScale = 0.5
-            sprite.yScale = 0.5
-            sprite.position = location
-            
-            let action = SKAction.rotateByAngle(CGFloat(M_PI), duration:1)
-            
-            sprite.runAction(SKAction.repeatActionForever(action))
-            
-            self.addChild(sprite)
+            var location = touch.locationInNode(self)
+            var rope = self.childNodeWithName("rope")
+            rope.position = location
+            println(rope.position)
         }
     }
    
