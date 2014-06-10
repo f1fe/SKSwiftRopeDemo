@@ -21,6 +21,9 @@ class GameScene: SKScene {
         anchor.position = CGPoint(x: self.frame.size.width / 2, y: self.frame.size.height - anchor.size.height)
         anchor.physicsBody = SKPhysicsBody(rectangleOfSize: anchor.frame.size)
         anchor.physicsBody.dynamic = false
+        anchor.physicsBody.collisionBitMask = 1
+        anchor.physicsBody.categoryBitMask = 1
+        anchor.physicsBody.contactTestBitMask = 1
         self.addChild(anchor)
         
         // Dynamic Body
@@ -28,6 +31,10 @@ class GameScene: SKScene {
         player.position = CGPoint(x: player.size.width * 2, y: self.frame.size.height / 2)
         //player.position.x += 400
         player.physicsBody = SKPhysicsBody(rectangleOfSize: player.frame.size)
+        player.physicsBody.allowsRotation = false
+        player.physicsBody.collisionBitMask = 1
+        player.physicsBody.categoryBitMask = 1
+        player.physicsBody.contactTestBitMask = 1
         self.addChild(player)
         
         // Create Rope
@@ -39,13 +46,16 @@ class GameScene: SKScene {
         
         for touch: AnyObject in touches {
             var location = touch.locationInNode(self)
-            var rope = self.childNodeWithName("rope")
-            rope.position = location
-            println(rope.position)
+            
+            // Remove all rope nodes
+            self.enumerateChildNodesWithName("rope", usingBlock: { node, stop in
+                node.removeFromParent()
+            })
         }
     }
    
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
+        
     }
 }
