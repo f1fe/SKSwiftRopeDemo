@@ -40,6 +40,7 @@ class Rope : SKNode {
         
         var vector = CGPoint(x: deltaX / Float(points), y: deltaY / Float(points))
         var previousNode : SKSpriteNode?
+        var angle = atan2f(deltaY, deltaX)
         
         for i in 0...points {
             var x = self.node1.position.x
@@ -51,6 +52,8 @@ class Rope : SKNode {
             var ropePiece = SKSpriteNode(imageNamed: self.ropeTexture)
             ropePiece.name = "rope"
             ropePiece.position = CGPoint(x: x, y: y)
+            ropePiece.zRotation = angle
+            
             ropePiece.physicsBody = SKPhysicsBody(rectangleOfSize: ropePiece.size)
             ropePiece.physicsBody.collisionBitMask = 2
             ropePiece.physicsBody.categoryBitMask = 2
