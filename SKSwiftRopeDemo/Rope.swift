@@ -27,6 +27,10 @@ class Rope : SKNode {
         
         self.createRope()
     }
+
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     func createRope() {
         // Calculate distance & angle
@@ -34,32 +38,38 @@ class Rope : SKNode {
         var deltaX = node2.position.x - node1.position.x
         var deltaY = node2.position.y - (node1.position.y  + (node1.frame.size.height / 2))
         var total = deltaX * deltaX + deltaY * deltaY
-        var distance = sqrtf(total)
-        var points = Int(distance / (SKSpriteNode(imageNamed: "rope.png").size.height - 1.0));
+        var distance = Float(sqrtf(Float(total)))
+        var height = Float(SKSpriteNode(imageNamed: "rope.png").size.height - 1.0)
+        var p = (distance / height)
+        
+        var points = Int(p)
         points -= 1;
         
-        var vector = CGPoint(x: deltaX / Float(points), y: deltaY / Float(points))
+        let vX = CGFloat(deltaX) / CGFloat(points)
+        let vY = CGFloat(deltaY) / CGFloat(points)
+        
+        var vector = CGPoint(x: vX, y: vY)
         var previousNode : SKSpriteNode?
-        var angle = atan2f(deltaY, deltaX)
+        var angle = atan2f(Float(deltaY), Float(deltaX))
         
         for i in 0...points {
             var x = self.node1.position.x
             var y = self.node1.position.y + (self.node1.frame.size.height / 2)
             
-            y += vector.y * Float(i)
-            x += vector.x * Float(i)
+            y += vector.y * CGFloat(i)
+            x += vector.x * CGFloat(i)
             
             var ropePiece = SKSpriteNode(imageNamed: self.ropeTexture)
             ropePiece.name = "rope"
             ropePiece.position = CGPoint(x: x, y: y)
-            ropePiece.zRotation = angle + 1.57
+            ropePiece.zRotation = CGFloat(angle + 1.57)
             ropePiece.zPosition = -1
             
             ropePiece.physicsBody = SKPhysicsBody(rectangleOfSize: ropePiece.size)
             
-            ropePiece.physicsBody.collisionBitMask = 2
-            ropePiece.physicsBody.categoryBitMask = 2
-            ropePiece.physicsBody.contactTestBitMask = 2
+            ropePiece.physicsBody?.collisionBitMask = 2
+            ropePiece.physicsBody?.categoryBitMask = 2
+            ropePiece.physicsBody?.contactTestBitMask = 2
             
             self.parentScene.addChild(ropePiece)
             

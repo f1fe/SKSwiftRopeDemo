@@ -13,7 +13,7 @@ class GameScene: SKScene {
     var player : SKSpriteNode
     var anchor : SKSpriteNode
     
-    init(coder aDecoder: NSCoder!)  {
+    required init(coder aDecoder: NSCoder)  {
         player = SKSpriteNode()
         anchor = SKSpriteNode()
         
@@ -30,19 +30,19 @@ class GameScene: SKScene {
         self.anchor = SKSpriteNode(color: UIColor.redColor(), size: CGSize(width: 50, height: 50))
         self.anchor.position = CGPoint(x: self.frame.size.width / 2, y: self.frame.size.height - anchor.size.height)
         self.anchor.physicsBody = SKPhysicsBody(rectangleOfSize: anchor.frame.size)
-        self.anchor.physicsBody.dynamic = false
-        self.anchor.physicsBody.collisionBitMask = 1
-        self.anchor.physicsBody.categoryBitMask = 1
-        self.anchor.physicsBody.contactTestBitMask = 1
+        self.anchor.physicsBody?.dynamic = false
+        self.anchor.physicsBody?.collisionBitMask = 1
+        self.anchor.physicsBody?.categoryBitMask = 1
+        self.anchor.physicsBody?.contactTestBitMask = 1
         self.addChild(self.anchor)
         
         // Dynamic Body
         self.player = SKSpriteNode(color: UIColor.greenColor(), size: CGSize(width: 50, height: 50))
         self.player.position = CGPoint(x: player.size.width * 2, y: self.frame.size.height / 2)
         self.player.physicsBody = SKPhysicsBody(rectangleOfSize: player.frame.size)
-        self.player.physicsBody.collisionBitMask = 1
-        self.player.physicsBody.categoryBitMask = 1
-        self.player.physicsBody.contactTestBitMask = 1
+        self.player.physicsBody?.collisionBitMask = 1
+        self.player.physicsBody?.categoryBitMask = 1
+        self.player.physicsBody?.contactTestBitMask = 1
         self.addChild(self.player)
         
         // Create Rope
@@ -67,7 +67,7 @@ class GameScene: SKScene {
             
             self.player.position = location
             self.player.zRotation = 0.0
-            self.player.physicsBody.velocity = CGVectorMake(0.0, 0.0);
+            self.player.physicsBody?.velocity = CGVectorMake(0.0, 0.0);
             
             var rope = Rope(parentScene: self, node: self.player, node: self.anchor, texture: "rope.png")
         }
