@@ -13,7 +13,7 @@ class GameScene: SKScene {
     var player : SKSpriteNode
     var anchor : SKSpriteNode
     
-    required init(coder aDecoder: NSCoder)  {
+    required init?(coder aDecoder: NSCoder)  {
         player = SKSpriteNode()
         anchor = SKSpriteNode()
         
