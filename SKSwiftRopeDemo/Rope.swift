@@ -35,12 +35,12 @@ class Rope : SKNode {
     func createRope() {
         // Calculate distance & angle
         
-        var deltaX = node2.position.x - node1.position.x
-        var deltaY = node2.position.y - (node1.position.y  + (node1.frame.size.height / 2))
-        var total = deltaX * deltaX + deltaY * deltaY
-        var distance = Float(sqrtf(Float(total)))
-        var height = Float(SKSpriteNode(imageNamed: "rope.png").size.height - 1.0)
-        var p = (distance / height)
+        let deltaX = node2.position.x - node1.position.x
+        let deltaY = node2.position.y - (node1.position.y  + (node1.frame.size.height / 2))
+        let total = deltaX * deltaX + deltaY * deltaY
+        let distance = Float(sqrtf(Float(total)))
+        let height = Float(SKSpriteNode(imageNamed: "rope.png").size.height - 1.0)
+        let p = (distance / height)
         
         var points = Int(p)
         points -= 1;
@@ -48,9 +48,9 @@ class Rope : SKNode {
         let vX = CGFloat(deltaX) / CGFloat(points)
         let vY = CGFloat(deltaY) / CGFloat(points)
         
-        var vector = CGPoint(x: vX, y: vY)
+        let vector = CGPoint(x: vX, y: vY)
         var previousNode : SKSpriteNode?
-        var angle = atan2f(Float(deltaY), Float(deltaX))
+        let angle = atan2f(Float(deltaY), Float(deltaX))
         
         for i in 0...points {
             var x = self.node1.position.x
@@ -59,7 +59,7 @@ class Rope : SKNode {
             y += vector.y * CGFloat(i)
             x += vector.x * CGFloat(i)
             
-            var ropePiece = SKSpriteNode(imageNamed: self.ropeTexture)
+            let ropePiece = SKSpriteNode(imageNamed: self.ropeTexture)
             ropePiece.name = "rope"
             ropePiece.position = CGPoint(x: x, y: y)
             ropePiece.zRotation = CGFloat(angle + 1.57)
@@ -74,11 +74,11 @@ class Rope : SKNode {
             self.parentScene.addChild(ropePiece)
             
             if let pNode = previousNode {
-                var pin = SKPhysicsJointPin.jointWithBodyA(pNode.physicsBody, bodyB: ropePiece.physicsBody, anchor: CGPoint(x: CGRectGetMidX(ropePiece.frame), y: CGRectGetMidY(ropePiece.frame)))
+                let pin = SKPhysicsJointPin.jointWithBodyA(pNode.physicsBody!, bodyB: ropePiece.physicsBody!, anchor: CGPoint(x: CGRectGetMidX(ropePiece.frame), y: CGRectGetMidY(ropePiece.frame)))
                 self.parentScene.physicsWorld.addJoint(pin)
             } else {
                 if i == 0 {
-                    var pin = SKPhysicsJointPin.jointWithBodyA(self.node1.physicsBody, bodyB: ropePiece.physicsBody, anchor: CGPoint(x: CGRectGetMidX(self.node1.frame), y: CGRectGetMaxY(self.node1.frame)))
+                    let pin = SKPhysicsJointPin.jointWithBodyA(self.node1.physicsBody!, bodyB: ropePiece.physicsBody!, anchor: CGPoint(x: CGRectGetMidX(self.node1.frame), y: CGRectGetMaxY(self.node1.frame)))
                     self.parentScene.physicsWorld.addJoint(pin)
                 }
             }
@@ -87,7 +87,7 @@ class Rope : SKNode {
         }
         
         if let pNode = previousNode {
-            var pin = SKPhysicsJointPin.jointWithBodyA(self.node2.physicsBody, bodyB: pNode.physicsBody, anchor: CGPoint(x: CGRectGetMidX(pNode.frame), y: CGRectGetMidY(pNode.frame)))
+            let pin = SKPhysicsJointPin.jointWithBodyA(self.node2.physicsBody!, bodyB: pNode.physicsBody!, anchor: CGPoint(x: CGRectGetMidX(pNode.frame), y: CGRectGetMidY(pNode.frame)))
             self.parentScene.physicsWorld.addJoint(pin)
         }
     }

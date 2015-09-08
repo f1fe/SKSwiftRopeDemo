@@ -10,16 +10,9 @@ import SpriteKit
 
 class GameScene: SKScene {
     
-    var player : SKSpriteNode
-    var anchor : SKSpriteNode
-    
-    required init?(coder aDecoder: NSCoder)  {
-        player = SKSpriteNode()
-        anchor = SKSpriteNode()
+    var player = SKSpriteNode()
+    var anchor = SKSpriteNode()
         
-        super.init(coder: aDecoder)
-    }
-    
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
         
@@ -48,17 +41,17 @@ class GameScene: SKScene {
         // Create Rope
         var rope = Rope(parentScene: self, node: self.player, node: self.anchor, texture: "rope.png")
         
-        var label = SKLabelNode(text: "Tap on screen to move block")
+        let label = SKLabelNode(text: "Tap on screen to move block")
         label.fontColor = UIColor.blackColor()
         label.position = CGPoint(x: self.frame.size.width / 2, y: 200)
         self.addChild(label)
     }
     
-    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         /* Called when a touch begins */
         
         for touch: AnyObject in touches {
-            var location = touch.locationInNode(self)
+            let location = touch.locationInNode(self)
             
             // Remove all rope nodes
             self.enumerateChildNodesWithName("rope", usingBlock: { node, stop in
